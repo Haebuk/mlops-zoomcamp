@@ -1,2 +1,5 @@
 pandas
 jupyter
+pyarrow
+scikit-learn
+seaborn
