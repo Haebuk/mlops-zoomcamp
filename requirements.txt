@@ -3,3 +3,7 @@ jupyter
 pyarrow
 scikit-learn
 seaborn
+mlflow
+hyperopt
+xgboost
+optuna
