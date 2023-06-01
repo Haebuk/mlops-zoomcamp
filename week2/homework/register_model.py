@@ -79,7 +79,7 @@ def run_register_model(data_path: str, top_n: int):
 
     # best_run = client.search_runs( ...  )[0]
     best_run = client.search_runs(
-        experiment_ids=experiment.experiment_id, 
+        experiment_ids=experiment.experiment_id,
         max_results=1,
         order_by=["metrics.test_rmse ASC"],
     )[0]
@@ -87,7 +87,10 @@ def run_register_model(data_path: str, top_n: int):
     print(best_run)
 
     # Register the best model
-    # mlflow.register_model( ... )
+    mlflow.register_model(
+        model_uri=f"runs:/{best_run.info.run_id}/model",
+        name="random-forest-model",
+    )
 
 
 if __name__ == "__main__":
