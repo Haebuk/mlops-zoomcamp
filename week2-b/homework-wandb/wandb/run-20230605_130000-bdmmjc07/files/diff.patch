@@ -1,0 +1,9 @@
+diff --git a/week2-b/wandb/run-20230604_113413-zl6nfe5j/files/wandb-summary.json b/week2-b/wandb/run-20230604_113413-zl6nfe5j/files/wandb-summary.json
+index 9e26dfe..494b125 100644
+--- a/week2-b/wandb/run-20230604_113413-zl6nfe5j/files/wandb-summary.json
++++ b/week2-b/wandb/run-20230604_113413-zl6nfe5j/files/wandb-summary.json
+@@ -1 +1 @@
+-{}
+\ No newline at end of file
++{"_wandb": {"runtime": 90546}}
+\ No newline at end of file
