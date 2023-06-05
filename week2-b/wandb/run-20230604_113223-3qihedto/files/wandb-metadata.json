@@ -1,0 +1,34 @@
+{
+    "os": "macOS-13.2.1-arm64-arm-64bit",
+    "python": "3.10.10",
+    "heartbeatAt": "2023-06-04T02:32:24.353870",
+    "startedAt": "2023-06-04T02:32:23.678532",
+    "docker": null,
+    "cuda": null,
+    "args": [],
+    "state": "running",
+    "program": "/Users/ryujaesung/kade/mlops-zoomcamp/week2-b/02_hyperparameter_optimization.py",
+    "codePath": "week2-b/02_hyperparameter_optimization.py",
+    "git": {
+        "remote": "https://github.com/Haebuk/mlops-zoomcamp.git",
+        "commit": "b0a660c6a16709e16c101c773756ce2bc8962224"
+    },
+    "email": "cwryu6252@naver.com",
+    "root": "/Users/ryujaesung/kade/mlops-zoomcamp",
+    "host": "yujaeseong-ui-MacBookAir.local",
+    "username": "ryujaesung",
+    "executable": "/Users/ryujaesung/kade/mlops-zoomcamp/week2-b/venv/bin/python",
+    "cpu_count": 8,
+    "cpu_count_logical": 8,
+    "disk": {
+        "total": 926.3517189025879,
+        "used": 11.961006164550781
+    },
+    "gpuapple": {
+        "type": "arm",
+        "vendor": "Apple"
+    },
+    "memory": {
+        "total": 16.0
+    }
+}

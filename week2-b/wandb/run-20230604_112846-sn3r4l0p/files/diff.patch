@@ -1,0 +1,12 @@
+diff --git a/week2-b/random_forest_classifier.pkl b/week2-b/random_forest_classifier.pkl
+index 72e8896..14dac5d 100644
+Binary files a/week2-b/random_forest_classifier.pkl and b/week2-b/random_forest_classifier.pkl differ
+diff --git a/week2-b/wandb/latest-run b/week2-b/wandb/latest-run
+index 98a7cab..7eb2079 120000
+--- a/week2-b/wandb/latest-run
++++ b/week2-b/wandb/latest-run
+@@ -1 +1 @@
+-run-20230604_104858-j3ea92k0
+\ No newline at end of file
++run-20230604_112846-sn3r4l0p
+\ No newline at end of file
