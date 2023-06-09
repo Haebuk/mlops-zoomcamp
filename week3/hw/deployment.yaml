@@ -1,5 +1,6 @@
 deployments:
   - name: week3-hw-deployment
     entrypoint: orchestrate.py:main_flow
+    path: week3/hw
     work_pool:
       name: zoompool
