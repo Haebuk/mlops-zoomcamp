@@ -1,4 +1,5 @@
-data/
+/data/
+week2-b/data
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
