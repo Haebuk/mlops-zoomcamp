@@ -3,3 +3,7 @@ deployments:
     entrypoint: week3/hw/orchestrate.py:main_flow
     work_pool:
       name: zoompool
+  - name: week3-hw-deployment
+    entrypoint: week3/hw/orchestrate_artifact.py:main_flow_artifact
+    work_pool:
+      name: zoompool

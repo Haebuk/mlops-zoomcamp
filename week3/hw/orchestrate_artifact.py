@@ -115,7 +115,7 @@ def train_best_model(
         ## RMSE: {rmse:.2f}
         """
 
-        create_markdown_artifact(markdown__rmse_report, "rmse_report")
+        create_markdown_artifact(markdown__rmse_report, "rmse-report")
     return None
 
 
@@ -142,4 +142,4 @@ def main_flow_artifact(
 
 
 if __name__ == "__main__":
-    main_flow()
+    main_flow_artifact()
