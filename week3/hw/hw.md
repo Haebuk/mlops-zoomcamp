@@ -56,7 +56,7 @@ View the results in the UI.
 What’s the final RMSE to five decimal places?
 
 - 6.67433
-- 5.19931
+- 5.19931 O
 - 8.89443
 - 9.12250
 
@@ -74,7 +74,7 @@ What’s the RMSE in the artifact to two decimal places ?
 - 9.71
 - 12.02
 - 15.33
-- 5.37
+- 5.37 O
 
 
 ## Q5. Emails
@@ -113,7 +113,7 @@ Test the notification functionality by running a deployment.
 What is the name of the pre-built prefect-email task function?
 
 - `send_email_message`
-- `email_send_message`
+- `email_send_message` O
 - `send_email`
 - `send_message`
 
@@ -139,7 +139,7 @@ What is the name of the second step in the Automation creation process?
 
 - Details
 - Trigger
-- Actions
+- Actions O
 - The end
 
 

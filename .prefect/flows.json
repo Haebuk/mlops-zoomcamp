@@ -1,0 +1,4 @@
+{
+  "main-flow": "week3/hw/orchestrate.py:main_flow",
+  "main-flow-artifact": "week3/hw/orchestrate_artifact.py:main_flow_artifact"
+}
