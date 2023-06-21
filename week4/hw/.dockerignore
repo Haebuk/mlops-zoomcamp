@@ -1,0 +1,4 @@
+.vscode
+model.bin
+*.ipynb
+*.parquet
