@@ -9,6 +9,8 @@ pandas = "*"
 cryptography = "==38.0.4"
 pyopenssl = "*"
 boto3 = "*"
+prefect = "*"
+s3fs = "*"
 
 [dev-packages]
 
