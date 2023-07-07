@@ -1,0 +1,13 @@
+services:
+  backend:
+    image: ${LOCAL_IMAGE_NAME}
+    ports:
+      - "8080:8080"
+    environment:
+      - AWS_DEFAULT_REGION=ap-northeast-2
+      - PREDICTIONS_STREAM_NAME=ride_predictions
+      - RUN_ID=abf2e9dc119f4aa5baeffcce17ec7a83
+      - TEST_RUN=True
+      - MODEL_LOCATION=/var/task/model
+    volumes:
+      - "./model:/var/task/model"

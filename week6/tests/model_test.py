@@ -46,7 +46,7 @@ def test_predict():
         "PU_DO": "130_205",
         "trip_distance": 3.66,
     }
-
+ 
     actual_prediction = model_service.predict(features)
     expected_prediction = 10.0
 

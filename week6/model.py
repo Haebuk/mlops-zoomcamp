@@ -7,9 +7,21 @@ import mlflow
 # kinesis_client = boto3.client("kinesis")
 
 
+def get_model_location(run_id):
+    model_location = os.getenv("MODEL_LOCATION")
+    print(f"model_location={model_location}")
+
+    if model_location is not None:
+        return model_location
+
+    model_bucket = os.getenv("MODEL_BUCKET", "kade-mlflow-artifacts")
+    experiment_id = os.getenv("MLFLOW_EXPERIMENT_ID", "1")
+    return f"s3://{model_bucket}/{experiment_id}/{run_id}/artifacts/model"
+
+
 def load_model(run_id):
-    logged_model = f"s3://kade-mlflow-artifacts/1/{run_id}/artifacts/model"
-    model = mlflow.pyfunc.load_model(logged_model)
+    model_location = get_model_location(run_id)
+    model = mlflow.pyfunc.load_model(model_location)
     return model
 
 
@@ -92,5 +104,5 @@ def init(prediction_stream_name: str, run_id: str, test_run: bool):
         )
         callbacks.append(kinesis_callback.put_record)
 
-    model_service = ModelService(model)
+    model_service = ModelService(model, model_version=run_id, callbacks=callbacks)
     return model_service
