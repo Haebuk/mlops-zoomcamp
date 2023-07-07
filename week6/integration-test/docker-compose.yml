@@ -5,9 +5,19 @@ services:
       - "8080:8080"
     environment:
       - AWS_DEFAULT_REGION=ap-northeast-2
-      - PREDICTIONS_STREAM_NAME=ride_predictions
+      - PREDICTIONS_STREAM_NAME=${PREDICTIONS_STREAM_NAME}
       - RUN_ID=abf2e9dc119f4aa5baeffcce17ec7a83
-      - TEST_RUN=True
+      # - TEST_RUN=True
       - MODEL_LOCATION=/var/task/model
+      - KINESIS_ENDPOINT_URL=http://kinesis:4566/
+      - AWS_ACCESS_KEY_ID=foo
+      - AWS_SECRET_ACCESS_KEY=bar
     volumes:
       - "./model:/var/task/model"
+
+  kinesis:
+    image: localstack/localstack
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=kinesis

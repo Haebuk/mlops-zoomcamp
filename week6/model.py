@@ -80,6 +80,7 @@ class ModelService:
 class KinesisCallback:
     def __init__(self, kinesis_client, prediction_stream_name):
         self.kinesis_client = kinesis_client
+        self.prediction_stream_name = prediction_stream_name
 
     def put_record(self, prediction_event):
         ride_id = prediction_event["prediction"]["ride_id"]
@@ -91,13 +92,22 @@ class KinesisCallback:
         )
 
 
+def create_kinesis_client():
+    endpoint_url = os.getenv("KINESIS_ENDPOINT_URL")
+    print(f"endpoint_url={endpoint_url}")
+    if endpoint_url is not None:
+        return boto3.client("kinesis", endpoint_url=endpoint_url)
+
+    return boto3.client("kinesis")
+
+
 def init(prediction_stream_name: str, run_id: str, test_run: bool):
     model = load_model(run_id)
 
     callbacks = []
 
     if not test_run:
-        kinesis_client = boto3.client("kinesis")
+        kinesis_client = create_kinesis_client()
         kinesis_callback = KinesisCallback(
             kinesis_client,
             prediction_stream_name,
