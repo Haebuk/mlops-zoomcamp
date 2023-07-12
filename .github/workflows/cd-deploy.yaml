@@ -77,10 +77,8 @@ jobs:
                 RUN_ID: ${{ steps.get-model-artifacts.outputs.run_id }}
               run: |
                 variables="{ \
-                            PREDICTIONS_STREAM_NAME: ${PREDICTIONS_STREAM_NAME}, \
-                            MODEL_BUCKET: ${MODEL_BUCKET}, \
-                            RUN_ID: ${RUN_ID} \
-                            }"
+                    PREDICTIONS_STREAM_NAME=$PREDICTIONS_STREAM_NAME, MODEL_BUCKET=$MODEL_BUCKET, RUN_ID=$RUN_ID \
+                    }"
 
                 STATE=$(aws lambda get-function --function-name ${LAMBDA_FUNCTION} --region ap-northeast-2 --query 'Configuration.LastUpdateStatus' --output text)
                     while [[ $STATE == "InProgress" ]]
@@ -90,4 +88,5 @@ jobs:
                         STATE=$(aws lambda get-function --function-name ${LAMBDA_FUNCTION} --region ap-northeast-2 --query 'Configuration.LastUpdateStatus' --output text)
                     done
 
-                aws lambda update-function-configuration --function-name ${LAMBDA_FUNCTION} --environment "Variables=${variables}"
+                aws lambda update-function-configuration --function-name $LAMBDA_FUNCTION \
+                    --environment "Variables=${variables}"
