@@ -5,13 +5,11 @@ terraform {
     key     = "mlops-zoomcamp.tfstate"
     region  = "ap-northeast-2"
     encrypt = true
-    profile = "my-kade"
   }
 }
 
 provider "aws" {
-  region  = var.aws_region
-  profile = "my-kade"
+  region = var.aws_region
 }
 
 data "aws_caller_identity" "current_identity" {}
@@ -61,4 +59,21 @@ module "lambda_function" {
   source_stream_name   = "${var.source_stream_name}-${var.project_id}"
   output_stream_arn    = module.output_kinesis_stream.stream_arn
   source_stream_arn    = module.source_kinesis_stream.stream_arn
+}
+
+# for ci/cd
+output "lambda_function" {
+  value = "${var.lambda_function_name}_${var.project_id}"
+}
+
+output "model_bucket" {
+  value = module.s3_bucket.name
+}
+
+output "predictions_stream_name" {
+  value = "${var.output_stream_name}-${var.project_id}"
+}
+
+output "ecr_repo" {
+  value = "${var.ecr_repo_name}_${var.project_id}"
 }

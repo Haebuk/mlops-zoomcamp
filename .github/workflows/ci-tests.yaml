@@ -1,0 +1,62 @@
+name: CI test
+on:
+    pull_request:
+        branches:
+            - 'develop'
+        paths:
+            - 'week6/**'
+
+env:
+    AWS_DEFAULT_REGION: 'ap-northeast-2'
+    AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+jobs:
+    test: # job name
+        runs-on: ubuntu-latest # runner type
+        steps:
+            - uses: actions/checkout@v2 # checkout the repository
+            - name: Set up Python 3.9
+              uses: actions/setup-python@v2
+              with:
+                    python-version: 3.9
+
+            - name: Install dependencies
+              working-directory: "./week6"
+              run: pip install pipenv && pipenv install --dev
+
+            - name: Run unit tests
+              working-directory: "./week6"
+              run: pipenv run pytest tests/
+              
+            - name: Configure AWS credentials
+              uses: aws-actions/configure-aws-credentials@v1
+              with:
+                aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                aws-region: ap-northeast-2
+
+            - name: Run integration test
+              working-directory: "./week6/integration-test"
+              run: |
+                . run.sh
+
+    tf-plan:
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v2
+            - name: Configure AWS credentials
+              uses: aws-actions/configure-aws-credentials@v1
+              with:
+                aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                aws-region: ap-northeast-2
+                    
+            - uses: hashicorp/setup-terraform@v1
+
+            - name: TF plan
+              id: plan
+              working-directory: "./week6/infrastructure"
+              run: |
+                terraform init -backend-config="key=mlops-zoomcamp-prod.tfstate" --reconfigure 
+                terraform plan --var-file vars/prod.tfvars
