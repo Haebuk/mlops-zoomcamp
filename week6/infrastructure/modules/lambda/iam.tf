@@ -57,21 +57,21 @@ resource "aws_iam_role_policy_attachment" "kinesis_processing" {
 
 resource "aws_iam_role_policy" "inline_lambda_policy" {
   name       = "LambdaInlinePolicy"
-  role       = aws_iam_role.iam_lambda.name
+  role       = aws_iam_role.iam_lambda.id
   depends_on = [aws_iam_role.iam_lambda]
   policy     = <<EOF
 {
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Effect": "Allow",
-            "Action": [
-                "kinesis:PutRecords,
-                "kinesis:PutRecord"
-            ],
-            "Resource": "${var.output_stream_arn}"
-        }
-    ]
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "kinesis:PutRecords",
+        "kinesis:PutRecord"
+      ],
+      "Resource": "${var.output_stream_arn}"
+    }
+  ]
 }
 EOF
 }
