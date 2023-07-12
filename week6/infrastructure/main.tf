@@ -5,13 +5,11 @@ terraform {
     key     = "mlops-zoomcamp.tfstate"
     region  = "ap-northeast-2"
     encrypt = true
-    profile = "my-kade"
   }
 }
 
 provider "aws" {
-  region  = var.aws_region
-  profile = "my-kade"
+  region = var.aws_region
 }
 
 data "aws_caller_identity" "current_identity" {}
